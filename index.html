@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Contact</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	
+	<style type="text/css">
+		body{
+			margin:0;
+			background-color: slategray;
+		}
+		#message{
+			width:auto;
+			height: auto;
+			background-color: beige;
+			display: flex;
+			justify-content: center;
+			
+		}
+		.placebox{
+					background:#F8C617;
+			padding:5px;
+			width:100px;
+			height:10px;
+			border:2px dashed black;
+			margin:2px 20px;
+					}
+	</style>
+</head>
+
+<body>
+	
+	<script>
+		$(function(){
+			
+			 $(".add_contact").click(function(){
+            var name = $("#name").val();
+            var number = $("#number").val();
+            var markup = "<tr><td>" + name + "</td><td>" + number + "</td><td><button>Delete</button></td><td><button>Completed</button></td></tr>";
+				 
+            $("table tbody").append(markup);
+				
+				
+				 $("td button").addClass("delete").addClass("complete");
+        });
+			
+			
+			$(document).on("click", ".delete", function(){
+				$(this).parent().parent().remove();
+				alert("Task completed");
+				
+			});
+			
+			$("#datarow").sortable({placeholder:"placebox"});
+			 
+		});
+		
+			
+		</script>
+	
+	
+	
+	<div class="container">
+		<center><p class="display-4" id="title">To do list</p>
+			<input type="submit" id="add" data-toggle="modal" data-target="#myModal" value="Add task"></center>
+		<table class="table table-secondary table-striped table-hover text-center">
+			<thead>
+				<tr class="bg-dark text-white" >
+					<td>Task</td>
+					<td>Task description</td>
+					
+					<td>Delete</td>
+					<td>Mark as complete</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id="datarow">
+					<td>Workout</td>
+					<td>Chest & triceps bench press</td>
+					
+					<td><button class="delete" id="delete">Delete</button></td>
+					<td><button class="delete" id="complete">Completed</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <input type="submit" class="close" data-dismiss="modal" value="&times;">
+        
+      </div>
+      <div class="modal-body">
+        <p class="text-center p-2">Add new person</p>
+		  <form class="text-center">
+        <input type="text" id="name" placeholder="Name" required onkeyUp="document.getElementById('printtext').innerHTML = this.value" /><br>
+        <input type="text" id="number" placeholder="Phone number" required onkeyUp="document.getElementById('printtext').innerHTML = this.value" /><br><br>
+    	<input type="button" id="add" value="Add" class="add_contact">
+    </form>
+      </div>
+		<div class="modal-footer text-center">
+			<p id="printtext" class="align-content-around"></p>
+		</div>
+      
+    </div>
+
+  </div>
+</div>
+	
+	
+	<!--Complete modal -->
+	
+	
+	
+	
+<script>
+	
+	$(function(){
+		
+     	$("#message").dialog();  
+
+				
+		
+	});
+	
+	</script>
+	
+</body>
+</html>
